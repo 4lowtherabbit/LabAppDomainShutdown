@@ -24,11 +24,6 @@ namespace LabAppDomainShutdown
         {
             var reason = HostingEnvironment.ShutdownReason;
 
-            if (!EventLog.SourceExists(".NET Runtime"))
-            {
-                EventLog.CreateEventSource(".NET Runtime", "Application");
-            }
-
             EventLog log = new EventLog();
             log.Source = ".NET Runtime";
             log.WriteEntry($"ShutdownReason: {reason}", EventLogEntryType.Error);
